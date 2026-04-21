@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="format-detection" content="telephone=no">
 <title>Text Product Pic and Details</title>
 <style>
-/* === YOUR EXISTING STYLES (UNCHANGED) === */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: #f3f4f6;
@@ -37,9 +37,7 @@ h2 {
   color: #111827;
 }
 
-.form-group {
-  margin-bottom: 8px;
-}
+.form-group { margin-bottom: 8px; }
 
 label {
   display: block;
@@ -64,7 +62,7 @@ input[type="number"] {
 input[type="text"]:focus,
 input[type="number"]:focus {
   border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
 }
 
 .row {
@@ -92,14 +90,8 @@ input[type="number"]:focus {
   gap: 6px;
 }
 
-.spec-wrap {
-  position: relative;
-}
-
-.spec-wrap input {
-  padding-right: 22px;
-}
-
+.spec-wrap { position: relative; }
+.spec-wrap input { padding-right: 22px; }
 .spec-unit {
   position: absolute;
   right: 7px;
@@ -110,7 +102,7 @@ input[type="number"]:focus {
   pointer-events: none;
 }
 
-/* CARD AREA – SAME LOOK AS YOUR ORIGINAL */
+/* CARD */
 .card-wrapper {
   display: flex;
   flex-direction: column;
@@ -125,13 +117,13 @@ input[type="number"]:focus {
   width: 360px;
   max-width: 100%;
   margin: 0 auto;
-  box-shadow: 0 8px 20px rgba(15,23,42,0.07);
+  box-shadow: 0 4px 14px rgba(15,23,42,0.09);
 }
 
-/* IMAGE AREA: we only add small tweaks for drag/zoom */
+/* IMAGE AREA */
 .card-image {
   width: 100%;
-  height: 300px;
+  height: 320px;
   background: #f3f4f6;
   display: flex;
   align-items: center;
@@ -145,12 +137,12 @@ input[type="number"]:focus {
 
 .card-image span {
   font-size: 13px;
-  color: #6b7280;
+  color: #9ca3af;
   text-align: center;
-  padding: 0 14px;
+  padding: 0 20px;
+  pointer-events: none;
 }
 
-/* inserted photo */
 .card-image img {
   position: absolute;
   left: 50%;
@@ -159,54 +151,69 @@ input[type="number"]:focus {
   transform-origin: 50% 50%;
   height: 100%;
   width: auto;
-  object-fit: cover;
   cursor: grab;
   user-select: none;
   -webkit-user-drag: none;
 }
 
+/* CARD TEXT — matches your reference image */
 .card-body {
-  padding: 12px 14px 11px;
+  padding: 14px 16px 14px;
 }
 
 .card-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 3px 0;
+  line-height: 1.3;
 }
 
-.card-line {
-  font-size: 13px;
-  color: #4b5563;
-  margin-bottom: 3px;
+.card-metal {
+  font-size: 14px;
+  font-weight: 400;
+  color: #374151;
+  margin: 0 0 2px 0;
+  line-height: 1.4;
+}
+
+.card-specs {
+  font-size: 14px;
+  font-weight: 400;
+  color: #374151;
+  margin: 0 0 0 0;
+  line-height: 1.4;
 }
 
 .card-price {
-  font-size: 16px;
-  font-weight: 700;
-  margin-top: 9px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+  margin: 12px 0 4px 0;
+  line-height: 1.2;
 }
 
 .card-contact {
   font-size: 10px;
   color: #6b7280;
-  margin-top: 5px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   white-space: nowrap;
-  text-decoration: none;
+  margin: 0;
+  /* prevent iOS blue link */
+  -webkit-text-fill-color: #6b7280;
+  text-decoration: none !important;
 }
 
-/* make sure phone/email never go blue/underlined */
-.card-contact a {
-  color: #6b7280;
-  text-decoration: none;
-}
+/* force any auto-linked phone/email to match */
+.card-contact a,
+.card-contact a:link,
 .card-contact a:visited,
 .card-contact a:active,
 .card-contact a:hover {
-  color: #6b7280;
-  text-decoration: none;
+  color: #6b7280 !important;
+  -webkit-text-fill-color: #6b7280 !important;
+  text-decoration: none !important;
 }
 
 .button-row {
@@ -218,7 +225,7 @@ input[type="number"]:focus {
 .btn {
   display: inline-flex;
   align-items: center;
-  padding: 6px 11px;
+  padding: 6px 14px;
   border-radius: 999px;
   border: 1px solid #d1d5db;
   font-size: 12px;
@@ -233,14 +240,12 @@ input[type="number"]:focus {
   color: #f9fafb;
   border-color: #111827;
 }
-
-/* END OF YOUR EXISTING STYLES */
 </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- LEFT PANEL: YOUR ORIGINAL FORM -->
+  <!-- LEFT: FORM -->
   <div class="panel">
     <h2>Item Info</h2>
 
@@ -250,28 +255,28 @@ input[type="number"]:focus {
     </div>
 
     <div class="form-group">
-      <label for="itemName">Item title</label>
-      <input id="itemName" type="text" placeholder="Vintage Necklace">
+      <label for="itemName">Item Title</label>
+      <input id="itemName" type="text" placeholder="Vintage Popcorn Chain">
     </div>
 
     <div class="form-group">
       <label for="metal">Metal</label>
-      <input id="metal" type="text" placeholder="14K Yellow Gold">
+      <input id="metal" type="text" placeholder="22k Yellow Gold">
     </div>
 
     <div class="form-group">
       <label>Specs</label>
       <div class="spec-grid">
         <div class="spec-wrap">
-          <input id="spec1" type="text" placeholder="32.95">
+          <input id="spec1" type="text" placeholder="12.74">
           <span class="spec-unit">g</span>
         </div>
         <div class="spec-wrap">
-          <input id="spec2" type="text" placeholder="16">
+          <input id="spec2" type="text" placeholder='24'>
           <span class="spec-unit">"</span>
         </div>
         <div class="spec-wrap">
-          <input id="spec3" type="text" placeholder="X">
+          <input id="spec3" type="text" placeholder="2">
           <span class="spec-unit">mm</span>
         </div>
       </div>
@@ -279,12 +284,12 @@ input[type="number"]:focus {
 
     <div class="form-group">
       <label for="price">Price</label>
-      <input id="price" type="number" placeholder="6990">
+      <input id="price" type="number" placeholder="2800">
     </div>
 
     <div class="form-group">
-      <label for="note">Message to client</label>
-      <input id="note" type="text" placeholder="Hi Sarah, here’s the necklace we talked about.">
+      <label for="note">Message to Client</label>
+      <input id="note" type="text" placeholder="Here's the necklace we talked about.">
     </div>
 
     <div class="row">
@@ -295,33 +300,24 @@ input[type="number"]:focus {
       </label>
     </div>
 
-    <div id="previewText" class="preview-text">
-Hi Sarah, here’s the necklace we talked about. Vintage Necklace 14K Yellow Gold 32.95g * 16" * Xmm Price: $6,990
-    </div>
+    <div id="previewText" class="preview-text"></div>
   </div>
 
-  <!-- RIGHT PANEL: YOUR ORIGINAL CARD -->
+  <!-- RIGHT: CARD PREVIEW -->
   <div class="panel">
     <h2>Card Preview</h2>
-
     <div class="card-wrapper">
       <div id="card" class="card">
         <div id="imageBox" class="card-image">
-          <!-- NEW: tap to choose photo from iPad -->
-          <span>Click here, then choose a photo from your device.</span>
+          <span>Tap to choose a photo from your iPad</span>
         </div>
-
-        <!-- NEW: hidden file input for photo -->
         <input id="photoInput" type="file" accept="image/*" style="display:none;">
-
         <div class="card-body">
-          <div id="cardTitle" class="card-title">Vintage Necklace</div>
-          <div id="cardMetal" class="card-line">14K Yellow Gold</div>
-          <div id="cardSpecs" class="card-line">32.95g * 16" * Xmm</div>
-          <div id="cardPrice" class="card-price">$6,990</div>
-          <div id="cardContact" class="card-contact">
-            JENBARATZ@HOTMAIL.COM • 512.578.8477
-          </div>
+          <div id="cardTitle" class="card-title">Vintage Popcorn Chain</div>
+          <div id="cardMetal" class="card-metal">22k Yellow Gold</div>
+          <div id="cardSpecs" class="card-specs">12.74g * 24"</div>
+          <div id="cardPrice" class="card-price">$2,800</div>
+          <div id="cardContact" class="card-contact">JENBARATZ@HOTMAIL.COM &nbsp;•&nbsp; 512.578.8477</div>
         </div>
       </div>
 
@@ -333,38 +329,25 @@ Hi Sarah, here’s the necklace we talked about. Vintage Necklace 14K Yellow Gol
   </div>
 </div>
 
-<!-- NEW: html2canvas ONLY for saving the card image -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-        integrity="sha512-BNa5lG2P+4O1QRbt7YIAO1VdlEbcFpMhF5Bvl2uR2rNvqA7qO5uSuyFJfVTuqq5LiklCgEeqY6VJQmBMRQ4YLg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  integrity="sha512-BNa5lG2P+4O1QRbt7YIAO1VdlEbcFpMhF5Bvl2uR2rNvqA7qO5uSuyFJfVTuqq5LiklCgEeqY6VJQmBMRQ4YLg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-/* === YOUR EXISTING JS BEHAVIOR, MINIMALLY EXTENDED === */
+// Title-case helper
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1));
+}
 
-const clientNameInput = document.getElementById('clientName');
-const itemNameInput   = document.getElementById('itemName');
-const metalInput      = document.getElementById('metal');
-const spec1Input      = document.getElementById('spec1');
-const spec2Input      = document.getElementById('spec2');
-const spec3Input      = document.getElementById('spec3');
-const priceInput      = document.getElementById('price');
-const noteInput       = document.getElementById('note');
-const contactToggle   = document.getElementById('contactToggle');
-
-const previewText = document.getElementById('previewText');
-
-const cardTitle   = document.getElementById('cardTitle');
-const cardMetal   = document.getElementById('cardMetal');
-const cardSpecs   = document.getElementById('cardSpecs');
-const cardPrice   = document.getElementById('cardPrice');
-const cardContact = document.getElementById('cardContact');
-
-const clearBtn = document.getElementById('clearBtn');
-const saveBtn  = document.getElementById('saveBtn');
-
-/* NEW: image elements */
-const imageBox   = document.getElementById('imageBox');
-const photoInput = document.getElementById('photoInput');
+// Auto-capitalize on each text input as user types
+['clientName','itemName','metal','note'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('input', function() {
+    const pos = this.selectionStart;
+    this.value = toTitleCase(this.value);
+    this.setSelectionRange(pos, pos);
+  });
+});
 
 function formatPrice(value) {
   if (!value) return '';
@@ -374,270 +357,195 @@ function formatPrice(value) {
 }
 
 function updateAll() {
-  const client = clientNameInput.value.trim();
-  const item   = itemNameInput.value.trim();
-  const metal  = metalInput.value.trim();
-  const spec1  = spec1Input.value.trim();
-  const spec2  = spec2Input.value.trim();
-  const spec3  = spec3Input.value.trim();
-  const price  = priceInput.value.trim();
-  const note   = noteInput.value.trim();
-  const showContact = contactToggle.checked;
+  const client = document.getElementById('clientName').value.trim();
+  const item   = document.getElementById('itemName').value.trim();
+  const metal  = document.getElementById('metal').value.trim();
+  const spec1  = document.getElementById('spec1').value.trim();
+  const spec2  = document.getElementById('spec2').value.trim();
+  const spec3  = document.getElementById('spec3').value.trim();
+  const price  = document.getElementById('price').value.trim();
+  const note   = document.getElementById('note').value.trim();
+  const showContact = document.getElementById('contactToggle').checked;
 
-  const specsParts = [];
-  if (spec1) specsParts.push(spec1 + 'g');         // no space before g
-  if (spec2) specsParts.push(spec2 + '"');
-  if (spec3) specsParts.push(spec3 + 'mm');       // no space before mm
-  const specs = specsParts.join(' * ');
+  // Build specs — only include filled slots, no space before g/mm
+  const parts = [];
+  if (spec1) parts.push(spec1 + 'g');
+  if (spec2) parts.push(spec2 + '"');
+  if (spec3) parts.push(spec3 + 'mm');
+  const specs = parts.join(' * ');
 
-  const firstName = client ? client.split(' ')[0] : 'Sarah';
+  document.getElementById('cardTitle').textContent  = item  || 'Item Title';
+  document.getElementById('cardMetal').textContent  = metal || 'Metal';
+  document.getElementById('cardSpecs').textContent  = specs || 'Specs';
+  document.getElementById('cardPrice').textContent  = formatPrice(price) || '$0';
+  document.getElementById('cardContact').style.display = showContact ? 'block' : 'none';
 
-  cardTitle.textContent = item || 'Vintage Necklace';
-  cardMetal.textContent = metal || '14K Yellow Gold';
-  cardSpecs.textContent = specs || '32.95g * 16" * Xmm';
-  cardPrice.textContent = formatPrice(price) || '$6,990';
-  cardContact.style.display = showContact ? 'block' : 'none';
-
-  let text = note || `Hi ${firstName}, here’s the necklace we talked about.`;
-  if (item || metal || specs || price) {
-    text += ' ';
-    text += (item || 'Vintage Necklace') + ' ' +
-            (metal || '14K Yellow Gold') + ' ';
-    if (specs) text += specs + ' ';
-    if (price) text += 'Price: ' + formatPrice(price);
-  }
-  previewText.textContent = text.trim();
+  // Preview text
+  const firstName = client ? client.split(' ')[0] : '';
+  const greeting  = note || (firstName ? `Hi ${firstName},` : '');
+  const lines = [];
+  if (greeting) lines.push(greeting);
+  if (item)  lines.push(item);
+  if (metal) lines.push(metal);
+  if (specs) lines.push(specs);
+  if (price) lines.push('Price: ' + formatPrice(price));
+  document.getElementById('previewText').textContent = lines.join('\n');
 }
 
-[
-  clientNameInput,
-  itemNameInput,
-  metalInput,
-  spec1Input,
-  spec2Input,
-  spec3Input,
-  priceInput,
-  noteInput,
-  contactToggle
-].forEach(el => el.addEventListener('input', updateAll));
+['clientName','itemName','metal','spec1','spec2','spec3','price','note','contactToggle']
+  .forEach(id => document.getElementById(id).addEventListener('input', updateAll));
 
-clearBtn.addEventListener('click', () => {
-  clientNameInput.value = '';
-  itemNameInput.value   = '';
-  metalInput.value      = '';
-  spec1Input.value      = '';
-  spec2Input.value      = '';
-  spec3Input.value      = '';
-  priceInput.value      = '';
-  noteInput.value       = '';
-  contactToggle.checked = true;
+document.getElementById('clearBtn').addEventListener('click', () => {
+  ['clientName','itemName','metal','spec1','spec2','spec3','price','note']
+    .forEach(id => { document.getElementById(id).value = ''; });
+  document.getElementById('contactToggle').checked = true;
   resetImageBox();
   updateAll();
 });
 
-/* === NEW: PHOTO PICK + DRAG + PINCH/ZOOM (ONLY INSIDE card-image) === */
+// ── PHOTO: pick, drag, zoom ──────────────────────────────────────────
+const imageBox   = document.getElementById('imageBox');
+const photoInput = document.getElementById('photoInput');
 
 function resetImageBox() {
-  imageBox.innerHTML =
-    '<span>Click here, then choose a photo from your device.</span>';
+  imageBox.innerHTML = '<span>Tap to choose a photo from your iPad</span>';
 }
 
-imageBox.addEventListener('click', () => {
-  photoInput.click();
-});
+imageBox.addEventListener('click', () => photoInput.click());
 
-photoInput.addEventListener('change', (e) => {
+photoInput.addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
-
   const reader = new FileReader();
-  reader.onload = (event) => {
+  reader.onload = ev => {
     imageBox.innerHTML = '';
     const img = document.createElement('img');
-    img.src = event.target.result;
-    img.dataset.offsetX = 0;
-    img.dataset.offsetY = 0;
-    img.dataset.scale   = 1;
+    img.src = ev.target.result;
+    img.dataset.ox = 0;
+    img.dataset.oy = 0;
+    img.dataset.scale = 1;
     imageBox.appendChild(img);
-    enableImageControls(imageBox);
+    attachControls(imageBox);
   };
   reader.readAsDataURL(file);
 });
 
-function enableImageControls(container) {
+function applyTransform(img) {
+  const ox = parseFloat(img.dataset.ox || 0);
+  const oy = parseFloat(img.dataset.oy || 0);
+  const sc = parseFloat(img.dataset.scale || 1);
+  img.style.transform =
+    `translate(calc(-50% + ${ox}px), calc(-50% + ${oy}px)) scale(${sc})`;
+}
+
+function clamp(v, mn, mx) { return Math.max(mn, Math.min(mx, v)); }
+
+function attachControls(container) {
   let img = container.querySelector('img');
-  if (!img) return;
+  let dragging = false;
+  let sx = 0, sy = 0, sox = 0, soy = 0;
+  let pinchD0 = 0, pinchS0 = 1;
 
-  let isDragging = false;
-  let startX = 0, startY = 0;
-  let startOffsetX = 0, startOffsetY = 0;
-  let pinchStartDistance = 0;
-  let pinchStartScale = 1;
-
-  container.onmousedown = (e) => {
-    if (e.target.tagName === 'IMG') {
-      img = e.target;
-      isDragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      startOffsetX = parseFloat(img.dataset.offsetX || 0);
-      startOffsetY = parseFloat(img.dataset.offsetY || 0);
-      img.style.cursor = 'grabbing';
-    }
-  };
-
-  window.onmousemove = (e) => {
-    if (!isDragging || !img) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    moveImage(container, img, startOffsetX + dx, startOffsetY + dy);
-  };
-
-  window.onmouseup = () => {
-    if (img) img.style.cursor = 'grab';
-    isDragging = false;
-  };
-
-  container.addEventListener('wheel', e => {
-    const targetImg = container.querySelector('img');
-    if (!targetImg) return;
+  // MOUSE
+  container.addEventListener('mousedown', e => {
+    if (e.target.tagName !== 'IMG') return;
+    img = e.target;
+    dragging = true;
+    sx = e.clientX; sy = e.clientY;
+    sox = parseFloat(img.dataset.ox || 0);
+    soy = parseFloat(img.dataset.oy || 0);
+    img.style.cursor = 'grabbing';
     e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!dragging || !img) return;
+    img.dataset.ox = sox + (e.clientX - sx);
+    img.dataset.oy = soy + (e.clientY - sy);
+    applyTransform(img);
+  });
+  window.addEventListener('mouseup', () => {
+    dragging = false;
+    if (img) img.style.cursor = 'grab';
+  });
 
-    let scale = parseFloat(targetImg.dataset.scale || 1);
-    const delta = e.deltaY < 0 ? 0.05 : -0.05;
-    scale = clamp(scale + delta, 0.8, 1.6);
-
-    const offsetX = parseFloat(targetImg.dataset.offsetX || 0);
-    const offsetY = parseFloat(targetImg.dataset.offsetY || 0);
-    targetImg.style.transform =
-      `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px)) scale(${scale})`;
-    targetImg.dataset.scale = scale;
-  }, { passive: false });
-
+  // TOUCH drag + pinch
   container.addEventListener('touchstart', e => {
-    const targetImg = container.querySelector('img');
-    if (!targetImg) return;
-
+    img = container.querySelector('img');
+    if (!img) return;
     if (e.touches.length === 1) {
-      img = targetImg;
-      isDragging = true;
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      startOffsetX = parseFloat(img.dataset.offsetX || 0);
-      startOffsetY = parseFloat(img.dataset.offsetY || 0);
+      dragging = true;
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+      sox = parseFloat(img.dataset.ox || 0);
+      soy = parseFloat(img.dataset.oy || 0);
     } else if (e.touches.length === 2) {
-      img = targetImg;
-      isDragging = false;
+      dragging = false;
       const dx = e.touches[0].clientX - e.touches[1].clientX;
       const dy = e.touches[0].clientY - e.touches[1].clientY;
-      pinchStartDistance = Math.sqrt(dx * dx + dy * dy);
-      pinchStartScale = parseFloat(img.dataset.scale || 1);
+      pinchD0 = Math.sqrt(dx*dx + dy*dy);
+      pinchS0 = parseFloat(img.dataset.scale || 1);
     }
   }, { passive: false });
 
   container.addEventListener('touchmove', e => {
-    const targetImg = container.querySelector('img');
-    if (!targetImg) return;
-
-    if (e.touches.length === 1 && isDragging && img) {
-      e.preventDefault();
-      const dx = e.touches[0].clientX - startX;
-      const dy = e.touches[0].clientY - startY;
-      moveImage(container, img, startOffsetX + dx, startOffsetY + dy);
-    } else if (e.touches.length === 2 && img) {
-      e.preventDefault();
+    img = container.querySelector('img');
+    if (!img) return;
+    e.preventDefault();
+    if (e.touches.length === 1 && dragging) {
+      img.dataset.ox = sox + (e.touches[0].clientX - sx);
+      img.dataset.oy = soy + (e.touches[0].clientY - sy);
+      applyTransform(img);
+    } else if (e.touches.length === 2) {
       const dx = e.touches[0].clientX - e.touches[1].clientX;
       const dy = e.touches[0].clientY - e.touches[1].clientY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (!pinchStartDistance) return;
-      let newScale = pinchStartScale * (dist / pinchStartDistance);
-      newScale = clamp(newScale, 0.8, 1.6);
-      const offsetX = parseFloat(img.dataset.offsetX || 0);
-      const offsetY = parseFloat(img.dataset.offsetY || 0);
-      img.style.transform =
-        `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px)) scale(${newScale})`;
-      img.dataset.scale = newScale;
+      const d  = Math.sqrt(dx*dx + dy*dy);
+      if (!pinchD0) return;
+      img.dataset.scale = clamp(pinchS0 * (d / pinchD0), 0.5, 4);
+      applyTransform(img);
     }
   }, { passive: false });
 
   container.addEventListener('touchend', e => {
-    if (e.touches.length === 0) {
-      isDragging = false;
-      pinchStartDistance = 0;
-    }
+    if (e.touches.length === 0) { dragging = false; pinchD0 = 0; }
   });
 }
 
-function moveImage(container, img, proposedOffsetX, proposedOffsetY) {
-  const scale = parseFloat(img.dataset.scale || 1);
-  const boxWidth  = container.clientWidth;
-  const boxHeight = container.clientHeight;
-  const naturalHeight = img.naturalHeight || boxHeight;
-  const naturalWidth  = img.naturalWidth  || boxWidth;
-
-  const imgAspect  = naturalWidth / naturalHeight;
-  const boxAspect  = boxWidth / boxHeight;
-
-  let displayedWidth, displayedHeight;
-  if (imgAspect > boxAspect) {
-    displayedWidth  = boxWidth * scale;
-    displayedHeight = (boxWidth / imgAspect) * scale;
-  } else {
-    displayedHeight = boxHeight * scale;
-    displayedWidth  = (boxHeight * imgAspect) * scale;
-  }
-
-  const maxX = Math.max(0, (displayedWidth - boxWidth) / 2);
-  const maxY = Math.max(0, (displayedHeight - boxHeight) / 2);
-
-  const newX = clamp(proposedOffsetX, -maxX, maxX);
-  const newY = clamp(proposedOffsetY, -maxY, maxY);
-
-  img.style.transform =
-    `translate(calc(-50% + ${newX}px), calc(-50% + ${newY}px)) scale(${scale})`;
-  img.dataset.offsetX = newX;
-  img.dataset.offsetY = newY;
-}
-
-function clamp(value, min, max) {
-  return Math.max(min, Math.min(max, value));
-}
-
-/* NEW: SAVE CARD AS IMAGE (for Photos) */
-saveBtn.addEventListener('click', () => {
+// ── SAVE CARD AS IMAGE ───────────────────────────────────────────────
+document.getElementById('saveBtn').addEventListener('click', () => {
   const card = document.getElementById('card');
   html2canvas(card, {
     backgroundColor: '#ffffff',
     scale: 2,
-    useCORS: true
+    useCORS: true,
+    allowTaint: true,
+    logging: false
   }).then(canvas => {
-    const filename = (itemNameInput.value.trim() || 'jewelry-card') + '.png';
+    const name   = (document.getElementById('itemName').value.trim() || 'jewelry-card');
     const dataUrl = canvas.toDataURL('image/png');
 
-    // Desktop download
-    const link = document.createElement('a');
-    link.download = filename;
-    link.href = dataUrl;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    // iPad/iPhone: open image in new tab so you can Save Image to Photos
-    if (/ipad|iphone|ipod/i.test(navigator.userAgent)) {
-      const win = window.open();
-      if (win) {
-        win.document.write('<title>' + filename + '</title>');
-        win.document.write('<img src="' + dataUrl + '" style="width:100%;height:auto;display:block;margin:0 auto;" />');
-        win.document.close();
-      }
+    // Open image in new tab — on iPad long-press the image → Save to Photos
+    const win = window.open('', '_blank');
+    if (win) {
+      win.document.write(`<!DOCTYPE html><html><head>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>${name}</title>
+        <style>body{margin:0;background:#000;display:flex;justify-content:center;align-items:flex-start;}
+        img{width:100%;max-width:600px;display:block;}</style>
+        </head><body>
+        <img src="${dataUrl}" alt="${name}">
+        <p style="color:#fff;text-align:center;font-size:14px;padding:12px;">
+          Long-press the image above, then tap <strong>Save to Photos</strong>.
+        </p>
+        </body></html>`);
+      win.document.close();
+    } else {
+      alert('Popup was blocked. Please allow popups for this site, then try again.');
     }
   }).catch(err => {
     console.error(err);
-    alert('Could not create image. Make sure you are online so html2canvas can load.');
+    alert('Could not create image — make sure you are online and try again.');
   });
 });
 
-/* initial fill */
 updateAll();
 </script>
 </body>
